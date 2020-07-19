@@ -51,21 +51,11 @@ class TownController extends Controller
      * @param  \App\Town  $town
      * @return \Illuminate\Http\Response
      */
-    public function show(Town $town)
+    public function show($id)
     {
-        //
-    }
+        $town = Town::with('users')->whereIn("id", $id)->get();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Town  $town
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Town $town)
-    {
-        //
+        return response()->json($town, 200);
     }
 
     /**
